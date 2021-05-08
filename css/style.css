@@ -1,0 +1,138 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Itim", cursive;
+  word-wrap: break-word;
+}
+
+nav {
+  width: 100vw;
+  background: #000;
+  color: #f2f2f2;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 22px;
+}
+
+main {
+  padding-top: 25px;
+  min-height: calc(100vh - 50px);
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+section.search-bar .search-input {
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background: transparent;
+  width: 300px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 0;
+  border-right: 0;
+  margin-bottom: 50px;
+}
+
+section.search-bar .search-input:focus {
+  outline: 0;
+}
+
+section.search-bar button[type="submit"] {
+  padding: 10px;
+  color: #f2f2f2;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-left: none;
+  cursor: pointer;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -5px;
+  transition: background 0.3s;
+}
+section.search-bar button[type="submit"]:focus {
+  outline: 0;
+}
+section.search-bar button[type="submit"]:hover {
+  background: #000;
+}
+
+/* OUTPUT */
+section.search-output {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+}
+
+section.search-output .search-output-item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  margin: 20px;
+}
+
+section.search-output .search-output-item img {
+  display: block;
+  margin-right: 20px;
+  width: 100%;
+}
+.search-output-desc {
+  margin-left: 10px;
+}
+.search-output-desc h4 {
+  margin: 20px 0;
+  font-family: "Itim", cursive;
+}
+.search-output-desc em {
+  margin: 20px 0;
+}
+.search-output-desc .rates {
+  margin: 20px 0;
+}
+.search-output-desc .rates {
+  color: orange;
+}
+
+.search-output-desc p {
+  margin: 20px 0;
+}
+
+.search-output-desc a {
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+}
+.search-output-desc a.preview {
+  color: teal;
+  margin: 20px 5px;
+}
+.search-output-desc a.more {
+  color: brown;
+  margin: 20px 5px;
+}
+.search-output-desc a i {
+  align-content: center;
+  margin-left: 10px;
+  font-size: 22px;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+}
