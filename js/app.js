@@ -24,16 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchBooks(text_value)
       .then((data) => {
         const spinner = '<img class="spinner" src="img/spinner.gif">';
-
-        search_output.innerHTML = spinner;
-        const { items } = data;
-        // console.log(data);
-        setTimeout(() => {
-          search_output.innerHTML = "";
-          items.forEach((item) => {
-            bookItem(item.volumeInfo);
-          });
-        }, 1500);
+        if (data === "error") {
+          search_output.innerHTML = spinner;
+          setTimeout(() => {
+            search_output.innerHTML = `
+          <b class="error"><i>Search result no found</i></b>
+          `;
+          }, 2000);
+        } else {
+          search_output.innerHTML = spinner;
+          const { items } = data;
+          // console.log(data);
+          setTimeout(() => {
+            search_output.innerHTML = "";
+            items.forEach((item) => {
+              bookItem(item.volumeInfo);
+            });
+          }, 1500);
+        }
       })
       .catch((err) => console.log(err));
   });
@@ -42,9 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // authors
     let authors = null;
 
-    if (item.authors.length) {
-      authors =
-        item.authors.length > 1 ? item.authors.join(" & ") : item.authors[0];
+    if (item.authors) {
+      authors = item.authors[0];
     }
     // icons
     let icons = "";
@@ -103,11 +110,15 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const fetchBooks = async (text) => {
-    const res = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${text}`
-    );
-    const data = await res.json();
-    console.log(data);
-    return data;
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${text}`
+      );
+      const data = await res.json();
+      console.log(data);
+      return data;
+    } catch (err) {
+      return "error";
+    }
   };
 });

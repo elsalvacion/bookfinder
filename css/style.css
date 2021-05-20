@@ -137,6 +137,12 @@ section.search-output .search-output-item img {
   height: 100%;
 }
 
+.error {
+  color: red;
+  text-align: center;
+  font-size: 20px;
+}
+
 @media (max-width: 800px) {
   section.search-bar {
     display: block;
