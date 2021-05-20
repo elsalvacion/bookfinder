@@ -39,12 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const bookItem = (item) => {
-    console.log(item);
-
     // authors
-    let authors =
-      item.authors.length > 1 ? item.authors.join(" & ") : item.authors[0];
+    let authors = null;
 
+    if (item.authors.length) {
+      authors =
+        item.authors.length > 1 ? item.authors.join(" & ") : item.authors[0];
+    }
     // icons
     let icons = "";
     if (item.averageRating) {
@@ -56,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Math.floor(item.averageRating) < 5 && item.averageRating % 10 >= 3) {
       icons += '<i class="material-icons">star_half</i>';
     }
-    console.log(item.averageRating % 10);
     let html = `
       <div class="search-output-cover">
         <img
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="search-output-desc">
         <div class="cover-details">
           <h4>Title: ${item.title}</h4>
-          <em>Authors: ${authors}</em>
+          ${authors !== null ? `<em>Authors: ${authors}</em>` : ``}
         </div>
         <div class="rates">
          ${icons}
@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `https://www.googleapis.com/books/v1/volumes?q=${text}`
     );
     const data = await res.json();
+    console.log(data);
     return data;
   };
 });
